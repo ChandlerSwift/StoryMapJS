@@ -13,6 +13,7 @@ import Slider from "./types/Slider"
 import IFrame from "./types/IFrame"
 import Website from "./types/Website"
 import { Media } from "./Media"
+import Video from "./types/Video"
 
 
 /*	MediaType
@@ -81,6 +82,12 @@ export default function MediaType(m) {
 				name: 		"Image",
 				match_str: 	/jpg|jpeg|png|gif/i,
 				cls: 		Image
+			},
+			{
+				type: 		"video",
+				name: 		"Video",
+				match_str: 	/mp4/i,
+				cls: 		Video
 			},
 			{
 				type: 		"googledocs",
