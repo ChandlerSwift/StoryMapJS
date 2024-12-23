@@ -22,7 +22,7 @@ export default class Leaflet extends Map {
 	_createMap() {
 
 
-		this._map = new L.map(this._el.map, {scrollWheelZoom:false, zoomControl:!this.options.map_mini});
+		this._map = new L.map(this._el.map, {scrollWheelZoom:true, zoomControl:!this.options.map_mini});
 		this._map.on("load", this._onMapLoaded, this);
 
 
