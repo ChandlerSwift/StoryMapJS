@@ -23,6 +23,19 @@ export default class Image extends Media {
 			this._el.content_link.href 			= this.data.link;
 			this._el.content_link.target 		= "_blank";
 			this._el.content_item				= Dom.create("img", "vco-media-item vco-media-image vco-media-shadow", this._el.content_link);
+
+			if (this.data.link.match(/\.(jpg|jpeg|png|gif)$/i)) { // The link target is another (presumably larger) image
+				// Display the content in a lightbox, rather than a new tab
+				this._el.content_link.addEventListener("click", function(event) {
+					event.preventDefault();
+					document.getElementById('lightbox').innerHTML = `
+						<a id="close"></a>
+						<div class="img" style="background: url('${this.getAttribute('href')}') center center / contain no-repeat;">
+							<img src="${this.getAttribute('href')}">
+						</div>`;
+					document.getElementById('lightbox').style.display = 'block';
+				});
+			}
 		} else {
 			this._el.content_item				= Dom.create("img", "vco-media-item vco-media-image vco-media-shadow", this._el.content);
 		}

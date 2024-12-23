@@ -47,3 +47,11 @@ const VCO = {
     StoryMap: StoryMap
 }
 window.VCO = VCO;
+
+// set up lightbox
+const lightboxDiv = document.createElement("div");
+lightboxDiv.setAttribute('id',"lightbox");
+document.body.appendChild(lightboxDiv);
+
+// close lightbox
+lightboxDiv.addEventListener("click", () => lightboxDiv.style.display = 'none');
