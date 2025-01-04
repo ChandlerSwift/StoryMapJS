@@ -46,6 +46,7 @@ export default class StorySlider {
 		this._nav = {};
 		this._nav.previous = {};
 		this._nav.next = {};
+		this._nav.back = {};
 
 		// Slide Spacing
 		this.slide_spacing = 0;
@@ -248,9 +249,11 @@ export default class StorySlider {
 			// Update Navigation and Info
 			if (this._slides[this.current_slide + 1]) {
 				this.showNav(this._nav.next, true);
+				this.showNav(this._nav.back, false);
 				this._nav.next.update(this.getNavInfo(this._slides[this.current_slide + 1]));
 			} else {
 				this.showNav(this._nav.next, false);
+				this.showNav(this._nav.back, true);
 			}
 			if (this._slides[this.current_slide - 1]) {
 				this.showNav(this._nav.previous, true);
@@ -379,6 +382,7 @@ export default class StorySlider {
 
 				this._nav.next.setColor(false);
 				this._nav.previous.setColor(false);
+				this._nav.back.setColor(false);
 
 				// If background is not white, less fade is better
 				if (bg_color.r < 255 && bg_color.g < 255 && bg_color.b < 255) {
@@ -406,9 +410,11 @@ export default class StorySlider {
 				if (bg_color.r < 255 && bg_color.g < 255 && bg_color.b < 255 || bg.image) {
 					this._nav.next.setColor(true);
 					this._nav.previous.setColor(true);
+					this._nav.back.setColor(true);
 				} else {
 					this._nav.next.setColor(false);
 					this._nav.previous.setColor(false);
+					this._nav.back.setColor(false);
 				}
 			}
 
@@ -477,6 +483,7 @@ export default class StorySlider {
 		nav_pos = (this.options.height/2);
 		this._nav.next.setPosition({top:nav_pos});
 		this._nav.previous.setPosition({top:nav_pos});
+		this._nav.back.setPosition({top:nav_pos});
 
 
 		// Position slides
@@ -504,6 +511,7 @@ export default class StorySlider {
 
 		} else {
 			this._nav.next.updatePosition({right:"130"}, false, this.options.duration*3, this.options.ease, -100, true);
+			this._nav.back.updatePosition({right:"130"}, false, this.options.duration*3, this.options.ease, -100, true);
 			this._nav.previous.updatePosition({left:"-100"}, true, this.options.duration*3, this.options.ease, -200, true);
 		}
 	}
@@ -528,10 +536,12 @@ export default class StorySlider {
 		// Create Navigation
 		this._nav.previous = new SlideNav({title: "Previous", description: "description"}, {direction:"previous"});
 		this._nav.next = new SlideNav({title: "Next",description: "description"}, {direction:"next"});
+		this._nav.back = new SlideNav({title: "Back",description:""},{direction:"back"});
 
 		// add the navigation to the dom
 		this._nav.next.addTo(this._el.container);
 		this._nav.previous.addTo(this._el.container);
+		this._nav.back.addTo(this._el.container);
 
 		this._el.slider_container.style.left="0px";
 
@@ -556,6 +566,7 @@ export default class StorySlider {
 	_initEvents() {
 		this._nav.next.on('clicked', this._onNavigation, this);
 		this._nav.previous.on('clicked', this._onNavigation, this);
+		this._nav.back.on('clicked', this._onNavigation, this);
 
 		if (this._message) {
 			this._message.on('clicked', this._onMessageClick, this);
@@ -595,6 +606,8 @@ export default class StorySlider {
 			this.next();
 		} else if (e.direction == "previous" || e.direction == "right") {
 			this.previous();
+		} else if (e.direction == "back") {
+			this.goTo(0);
 		}
 		this.fire("nav_" + e.direction, this.data);
 	}

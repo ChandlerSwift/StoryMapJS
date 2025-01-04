@@ -3,7 +3,7 @@
 
 /* NAVIGATION
 ================================================== */
-.vco-slidenav-previous, .vco-slidenav-next {
+.vco-slidenav-previous, .vco-slidenav-next, .vco-slidenav-back {
 	position:absolute;
 	top: 45%;
 	z-index:10;
@@ -54,7 +54,7 @@
 
 /* ICONS AND NAVIGATION HOVER AND COLOR
 ================================================== */
-.vco-slidenav-next, .vco-slidenav-previous {
+.vco-slidenav-next, .vco-slidenav-previous, .vco-slidenav-back {
 	.vco-slidenav-content-container {
 		.vco-slidenav-icon, .vco-slidenav-title, .vco-slidenav-description {
 			text-shadow: 1px 1px 1px @color-background;
@@ -106,6 +106,23 @@
 	}
 }
 
+.vco-slidenav-back {
+	text-align: right;
+	margin-right:10px;
+    right: 100px;
+	.vco-slidenav-icon {
+		margin-left: 100 - 24px;
+		&:before {
+			content: "\e63e";
+		}
+	}
+	&:hover {
+		.vco-slidenav-icon {
+	        margin-left: 100 - 20px;
+		}
+	}
+}
+
 .vco-slidenav-previous {
 	text-align: left;
 	margin-left:10px;
@@ -126,7 +143,7 @@
 /* Skinny
 ================================================== */
 .vco-skinny {
-	.vco-slidenav-next {
+	.vco-slidenav-next, .vco-slidenav-back {
 	    right: 32px;
 		.vco-slidenav-icon {
 			margin-left:32 - 24px;
@@ -148,7 +165,7 @@
 		}
 	}
 	
-	.vco-slidenav-previous, .vco-slidenav-next {
+	.vco-slidenav-previous, .vco-slidenav-next, .vco-slidenav-back {
 		.vco-slidenav-content-container {
 			width:32px;
 			height:32px;
@@ -176,7 +193,7 @@
 /* Mobile and Landscape
 ================================================== */
 .vco-layout-landscape.vco-mobile {
-	.vco-slidenav-next {
+	.vco-slidenav-next, .vco-slidenav-back {
 		&:hover {
 			right: 70px;
 			.vco-slidenav-icon {
@@ -213,7 +230,7 @@
 /* Mobile and Portrait
 ================================================== */
 .vco-layout-portrait.vco-mobile {
-	.vco-slidenav-next, .vco-slidenav-previous {
+	.vco-slidenav-next, .vco-slidenav-previous, .vco-slidenav-back {
 		&:hover {
 			.vco-slidenav-icon {
 			   .opacity(33);
@@ -230,7 +247,7 @@
 /* Mobile
 ================================================== */
 .vco-mobile, .vco-skinny.vco-mobile, .vco-skinny.vco-layout-landscape.vco-mobile, .vco-skinny.vco-layout-portrait.vco-mobile  {
-	.vco-slidenav-previous, .vco-slidenav-next {
+	.vco-slidenav-previous, .vco-slidenav-next, .vco-slidenav-back {
 		display:none;
 	}
 }
@@ -239,7 +256,7 @@
 ================================================== */
 .vco-layout-landscape {
 	.vco-storyslider {
-		.vco-slidenav-next, .vco-slidenav-previous {
+		.vco-slidenav-next, .vco-slidenav-previous, .vco-slidenav-back {
 			.vco-slidenav-icon {
 				&:before {
 					//background-color:@color-background;
@@ -273,7 +290,7 @@
 				}
 			}
 		}
-		.vco-slidenav-next {
+		.vco-slidenav-next, .vco-slidenav-back {
 			//margin-left:0px;
 			 right: 130px;
 			 .vco-slidenav-icon {
